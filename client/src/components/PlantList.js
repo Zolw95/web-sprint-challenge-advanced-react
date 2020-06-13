@@ -27,20 +27,21 @@ export default class PlantList extends Component {
 
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
   render() {
+    let filteredPlants = this.state.plants.filter((plant) => {
+      return (
+        plant.name.toLowerCase().indexOf(this.state.text.toLowerCase()) !== -1
+      );
+    });
     return (
       <main className="plant-list">
-        <div>
-          <form onSubmit={this.onSubmit} className="form">
-            <input
-              type="text"
-              name="text"
-              placeholder="Search Plants..."
-              value={this.state.text}
-              onChange={this.onChange}
-            />
-          </form>
-        </div>
-        {this.state?.plants?.map((plant) => (
+        <input
+          type="text"
+          name="text"
+          placeholder="Search Plants..."
+          value={this.state.text}
+          onChange={this.onChange}
+        />
+        {filteredPlants.map((plant) => (
           <div className="plant-card" key={plant.id}>
             <img className="plant-image" src={plant.img} alt={plant.name} />
             <div className="plant-details">

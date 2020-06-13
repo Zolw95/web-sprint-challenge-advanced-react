@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "../hooks/useForm";
+import useLightMode from "../hooks/useLightMode";
+import "../App.css";
 
 // This form should be handled by a "useForm" custom hook
 // Build out the logic needed for a form custom hook (see the useForm.js file)
@@ -16,7 +18,7 @@ const CheckoutForm = (props) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form id="form" onSubmit={handleSubmit}>
         <h2>Checkout Form</h2>
         <label>
           First Name:

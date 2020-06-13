@@ -6,6 +6,7 @@ import ShoppingCart from "./components/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm";
 
 import "./App.css";
+import useLightMode from "./hooks/useLightMode";
 
 function App() {
   // array of plants that have been added to the cart
@@ -21,8 +22,17 @@ function App() {
     setCart(cart.filter((p) => p.id !== plant.id));
   };
 
+  //Light Mode State
+  const [lightMode, switchMode] = useLightMode("lightmode", false);
+
   return (
     <div>
+      <div className="light-mode__toggle">
+        <div
+          className={lightMode ? "toggle toggled" : "toggle"}
+          onClick={switchMode}
+        ></div>
+      </div>
       <Router>
         <nav className="container">
           <h1>
