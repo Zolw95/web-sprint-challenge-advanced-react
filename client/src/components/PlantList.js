@@ -17,10 +17,29 @@ export default class PlantList extends Component {
     });
   }
 
+  // Update Search Plant Input
+  updateSearch(e) {
+    this.setState({ text: e.target.value.substr(0, 25) });
+  }
+
+  // Filter Plant List
+  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
   render() {
     return (
       <main className="plant-list">
+        <div>
+          <form onSubmit={this.onSubmit} className="form">
+            <input
+              type="text"
+              name="text"
+              placeholder="Search Plants..."
+              value={this.state.text}
+              onChange={this.onChange}
+            />
+          </form>
+        </div>
         {this.state?.plants?.map((plant) => (
           <div className="plant-card" key={plant.id}>
             <img className="plant-image" src={plant.img} alt={plant.name} />
